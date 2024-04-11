@@ -2,6 +2,7 @@
 
 def call(String imageName) {
     stage('Docker Push') {
+        sh "echo "pushing ${imageName}""
         sh "docker push ${imageName}"
     }
 }
