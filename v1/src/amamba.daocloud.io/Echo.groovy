@@ -27,3 +27,5 @@ def call(String lang){
     }
     //其他代码
 }
+
+return this
