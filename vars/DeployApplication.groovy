@@ -1,5 +1,5 @@
 def call(String credentialsId,String cluster, String namespace, String filepath){
-        withCredentials([file(credentialsId: '$credentialsId', variable: 'KUBECONFIG')]) {
+        withCredentials([file(credentialsId: $credentialsId, variable: 'KUBECONFIG')]) {
             echo "deploying $filepath to $cluster in $namespace namespace"
             kubectl apply - f $filepath -n $namespace
         }
