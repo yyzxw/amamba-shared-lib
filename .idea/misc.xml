@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="kubernetes-admin@kpanda-cluster" />
+  </component>
+  <component name="KubernetesSettings">
+    <option name="getSpecFromCluster" value="true" />
+  </component>
+  <component name="MarkdownSettings">
+    <enabledExtensions>
+      <entry key="MermaidLanguageExtension" value="false" />
+      <entry key="PlantUMLLanguageExtension" value="false" />
+    </enabledExtensions>
+    <option name="splitLayout" value="SHOW_PREVIEW" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProtobufSettings">
+    <option name="autoDecompile" value="true" />
+  </component>
+</project>
