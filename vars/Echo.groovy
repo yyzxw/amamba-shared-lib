@@ -5,7 +5,7 @@ def call(String lang){
     } else if (lang == 'node'){
         echo node
     }
-     echo $lang
+     sh 'echo ${lang}'
 }
 
 return this
