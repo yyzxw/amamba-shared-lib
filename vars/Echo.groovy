@@ -1,31 +1,11 @@
 // var/generatePipeline.groovy
 def call(String lang){
     if (lang == 'java') {
-        pipeline {
-            agent any
-            stages {
-                stage('java') {
-                    steps {
-
-                        sh 'echo java'
-                    }
-                }
-            }
-        }
+        sh 'echo java'
     } else if (lang == 'node'){
-
-        pipeline {
-            agent any
-            stages {
-                stage('node') {
-                    steps {
-                        sh 'echo node'
-                    }
-                }
-            }
-        }
+        sh 'echo node'
     }
-    //其他代码
+     sh 'echo ${lang}'
 }
 
 return this
