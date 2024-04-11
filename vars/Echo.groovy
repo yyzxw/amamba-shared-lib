@@ -1,11 +1,11 @@
 // var/generatePipeline.groovy
 def call(String lang){
     if (lang == 'java') {
-        sh 'echo java'
+        echo java
     } else if (lang == 'node'){
-        sh 'echo node'
+        echo node
     }
-     sh 'echo ${lang}'
+     echo $lang
 }
 
 return this
