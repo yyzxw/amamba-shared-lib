@@ -2,23 +2,21 @@ def call(Map config) {
     runArgs = "--entrypoint='' "
 
     String pluginID = config.pluginID
-    Map args = config.args
-    string volume = config.volume
+    echo "run amamba custom step ${pluginID}"
 
-    if (volume) {
-        runArgs = runArgs + "-v ${volume}"
-    }
-    echo "Running plugin ${pluginID} with ${args}, volume: ${volume}"
+    Map args = config.args
+    echo "plugin args ${args}"
 
     script {
         String envVars = args.collect { k, v ->
             "-e ${k}=${v}"
         }.join(' ')
 
-        echo "envVars: ${envVars}"
+        echo "inject env vars ${envVars}"
+
         runArgs = runArgs + " ${envVars}"
-        docker.image("$image").inside("$runArgs") {
-            sh "$shell $script"
+        docker.image(args.image).inside("$runArgs") {
+            sh "$args.shell $args.script"
         }
     }
 }
