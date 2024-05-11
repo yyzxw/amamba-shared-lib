@@ -4,14 +4,13 @@ def call(Map config) {
 
     String pluginID = config.pluginID
     Map args = config.args
-    echo "run amamba custom plugin ${pluginID} with args ${args}"
+    echo "============================================================"
+    echo "run amamba custom plugin [${pluginID}] with args: ${args}"
 
     script {
         String envVars = args.collect { k, v ->
             "-e ${k}=${v}"
         }.join(' ')
-        echo "inject env vars ${envVars}"
-
         runArgs = runArgs + " ${envVars}"
         //TODO add -v for each volume
         docker.image(args.image).inside("$runArgs") {
@@ -22,6 +21,7 @@ def call(Map config) {
             }
         }
     }
+    echo "============================================================"
 }
 
 def validate(Map config) {
