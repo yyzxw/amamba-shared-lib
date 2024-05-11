@@ -1,25 +1,24 @@
 def call(Map config) {
-    runArgs = "--entrypoint=''"
+    runArgs = "--entrypoint='' "
 
     String pluginID = config.pluginID
     Map args = config.args
     string volume = config.volume
 
+    if (volume) {
+        runArgs = runArgs + "-v ${volume}"
+    }
     echo "Running plugin ${pluginID} with ${args}, volume: ${volume}"
 
     script {
-        Map envVars = args.collectEntries { k, v ->
-            [k, v]
-        }
-        echo "envVars: ${envVars}"
+        String envVars = args.collect { k, v ->
+            "-e ${k}=${v}"
+        }.join(' ')
 
-        withEnv(envVars) {
-            if (volume) {
-                runArgs = runArgs + " -v ${volume}"
-            }
-            docker.image("$image").inside("$runArgs") {
-                sh "$shell $script"
-            }
+        echo "envVars: ${envVars}"
+        runArgs = runArgs + " ${envVars}"
+        docker.image("$image").inside("$runArgs") {
+            sh "$shell $script"
         }
     }
 }
