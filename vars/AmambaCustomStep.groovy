@@ -1,4 +1,7 @@
-def call(String pluginID,Map args){
+def call(Map config){
+    String pluginID = config.pluginID
+    Map args = config.args
+
     echo "Running plugin ${pluginID} with ${args}"
     withEnv(args) {
         def image = args['image']
